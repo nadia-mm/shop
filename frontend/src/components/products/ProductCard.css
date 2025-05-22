@@ -1,0 +1,90 @@
+:root {
+  --btn-add-bg: #2563eb;
+  --btn-add-hover: #1e40af;
+
+  --btn-edit-bg: #4caf50;
+  --btn-edit-hover: rgba(76, 175, 80, 0.92);
+
+  --btn-delete-bg: #d32f2f;
+  --btn-delete-hover: rgba(211, 47, 47, 0.92);
+
+  --btn-text-color: #ffffff;
+  --btn-padding: 8px 14px;
+  --btn-radius: 4px;
+  --btn-font-weight: 500;
+
+  --product-image-width: 250px;
+  --product-image-height: 250px;
+}
+
+.product-card {
+  border: 1px solid #e5e7eb;
+  padding: 16px;
+  margin: 12px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+
+.product-title {
+  font-size: 1.25rem;
+  margin: 0.5rem 0;
+}
+
+.product-category {
+  font-size: 0.9rem;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.product-image {
+  width: var(--product-image-width);
+  height: var(--product-image-height);
+  object-fit: cover;
+  margin: 1rem 0;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.product-card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 1rem;
+  justify-content: flex-start;
+}
+
+button[class^="btn-"] {
+  color: var(--btn-text-color);
+  border: none;
+  padding: var(--btn-padding);
+  border-radius: var(--btn-radius);
+  cursor: pointer;
+  font-weight: var(--btn-font-weight);
+  transition: background-color 0.2s ease;
+}
+
+.btn-add {
+  background-color: var(--btn-add-bg);
+}
+.btn-add:hover {
+  background-color: var(--btn-add-hover);
+}
+
+.btn-edit {
+  background-color: var(--btn-edit-bg);
+}
+.btn-edit:hover {
+  background-color: var(--btn-edit-hover);
+}
+
+.btn-delete {
+  background-color: var(--btn-delete-bg);
+}
+.btn-delete:hover {
+  background-color: var(--btn-delete-hover);
+}

@@ -1,0 +1,13 @@
+:root {
+  --color-primary: #606060
+}
+.product-form-header {
+    color: var(--primary-color);
+    padding: 1.25rem;
+}
+
+.product-form-field {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+}

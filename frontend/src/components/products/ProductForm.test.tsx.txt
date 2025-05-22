@@ -1,0 +1,80 @@
+import React from "react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import ProductForm from "./ProductForm";
+import { TProduct } from "./ProductList";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const mockProduct: TProduct = {
+  _id: "1",
+  name: "",
+  description: "",
+  imgUrl: "",
+  category: "",
+  price: "",
+  quantity: 0,
+  rating: 0,
+};
+
+jest.mock("../../hooks/useSnackbar", () => () => ({
+  showSnackbar: jest.fn(),
+  SnackbarComponent: () => <div data-testid="snackbar" />,
+}));
+
+jest.mock("../../hooks/useCategory", () => ({
+  useCategories: () => ({
+    data: [{ _id: "cat1", name: "Catégorie Test" }],
+  }),
+}));
+
+jest.mock("../../hooks/useProduct", () => ({
+  useMutateProduct: () => ({
+    mutate: jest.fn(),
+    isPending: false,
+  }),
+}));
+
+jest.mock("../../hooks/useProductForm", () => ({
+  useProductForm: () => ({
+    errors: {
+      name: "Le champ nom est requis.",
+    },
+    isFormValid: false,
+    hasAnyFieldChanged: true,
+  }),
+}));
+
+const queryClient = new QueryClient();
+
+const renderWithClient = (ui: React.ReactNode) =>
+  render(<QueryClientProvider client={queryClient}>{ui}</QueryClientProvider>);
+
+describe("ProductForm", () => {
+  it("renders with modal open and shows validation error", async () => {
+    renderWithClient(
+      <ProductForm
+        product={mockProduct}
+        action="add"
+        isVisible={true}
+        onClose={jest.fn()}
+      />
+    );
+
+    expect(screen.getByText("Ajouter un produit")).toBeInTheDocument();
+    expect(screen.getByText("Le champ nom est requis.")).toBeInTheDocument();
+    expect(screen.getByRole("dialog")).toBeInTheDocument();
+  });
+
+  it("disables submit button when form is invalid", async () => {
+    renderWithClient(
+      <ProductForm
+        product={mockProduct}
+        action="add"
+        isVisible={true}
+        onClose={jest.fn()}
+      />
+    );
+
+    const submitButton = screen.getByText(/Enregistrer/i) as HTMLButtonElement;
+    expect(submitButton.disabled).toBeTruthy();
+  });
+});

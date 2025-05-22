@@ -1,0 +1,16 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.main-layout {
+  display: flex;
+  flex-direction: row;
+}
+
+button {
+  border-radius: 4px;
+  font-size: 1rem;
+  color: white
+}

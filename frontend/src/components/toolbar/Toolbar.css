@@ -1,0 +1,39 @@
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+}
+
+.toolbar__section {
+  display: flex;
+  align-items: center;
+}
+
+.toolbar__section--center {
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.toolbar__logo {
+  height: 40px;
+}
+
+.toolbar__title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.toolbar__cart-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .toolbar__logo {
+    display: none;
+  }
+}

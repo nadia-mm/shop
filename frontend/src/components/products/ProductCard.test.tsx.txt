@@ -1,0 +1,57 @@
+import React from "react";
+import { render, screen, fireEvent } from "@testing-library/react";
+import ProductCard from "./ProductCard";
+import { BrowserRouter } from "react-router-dom";
+import { TProduct } from "./ProductList";
+
+jest.mock("../../hooks/useSnackbar", () => () => ({
+  showSnackbar: jest.fn(),
+  SnackbarComponent: () => <div>Snackbar</div>,
+}));
+
+jest.mock("../../hooks/useProduct", () => ({
+  useMutateProduct: () => ({
+    mutate: jest.fn(),
+    isPending: false,
+  }),
+}));
+
+const product: TProduct = {
+  _id: "123",
+  name: "Test Product",
+  description: "A product for testing",
+  imgUrl: "http://example.com/image.jpg",
+  category: "Test Category",
+  price: "100",
+  quantity: 10,
+  rating: 4.5,
+};
+
+const renderWithRouter = (component: React.ReactElement) => {
+  return render(<BrowserRouter>{component}</BrowserRouter>);
+};
+
+describe("ProductCard", () => {
+  it("renders product data correctly", () => {
+    renderWithRouter(<ProductCard product={product} />);
+    expect(screen.getByText("Test Category")).toBeInTheDocument();
+    expect(screen.getByText("Test Product")).toBeInTheDocument();
+    expect(screen.getByText("Modifier")).toBeInTheDocument();
+    expect(screen.getByText("Supprimer")).toBeInTheDocument();
+    expect(screen.getByText("Voir")).toBeInTheDocument();
+  });
+
+  it("shows the edit form when 'Modifier' is clicked", () => {
+    renderWithRouter(<ProductCard product={product} />);
+    fireEvent.click(screen.getByText("Modifier"));
+    expect(screen.getByText("Modifier le produit")).toBeInTheDocument();
+  });
+
+  it("shows delete confirmation modal when 'Supprimer' is clicked", () => {
+    renderWithRouter(<ProductCard product={product} />);
+    fireEvent.click(screen.getByText("Supprimer"));
+    expect(
+      screen.getByText(/Êtes-vous sûr\(es\) de vouloir supprimer ce produit/i)
+    ).toBeInTheDocument();
+  });
+});

@@ -1,0 +1,98 @@
+:root {
+  --sidebar-bg: #fff;
+  --menu-text: #606060;
+   --menu-hover-bg: #f3f4f6;
+  --transition: 0.3s;
+}
+
+body {
+  margin: 0;
+}
+
+.hamburger {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.hamburger-bar {
+  width: 25px;
+  height: 3px;
+  background-color: #606060;
+}
+
+.sidebar {
+  background-color: var(--sidebar-bg);
+  border-right: 1px solid #e5e7eb;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+  color: var(--menu-text);
+  width: 240px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: left var(--transition) ease-in-out;
+  z-index: 1000;
+}
+
+.sidebar.mobile {
+  left: -100%;
+    padding-top: 60px;
+}
+
+.sidebar.mobile.open {
+  left: 0;
+}
+
+.menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-item {
+  display: block;
+  padding: 1rem 1.5rem;
+  color: var(--menu-text);
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.menu-item:hover {
+  background-color: var(--menu-hover-bg);
+}
+
+.sidebar.desktop {
+  display: none;
+}
+
+.hamburger-cross {
+  font-size: 30px;
+  color: #000;
+  display: block;
+  text-align: center;
+  line-height: 25px;
+}
+
+@media (min-width: 768px) {
+  .hamburger,
+  .sidebar.mobile {
+    display: none;
+  }
+
+  .sidebar.desktop {
+    display: block;
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+}
