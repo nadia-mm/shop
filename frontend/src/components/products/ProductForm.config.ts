@@ -15,8 +15,6 @@ export const PRODUCT_FORM_FIELDS :Partial<Record<keyof TProduct, TFieldValidatio
         type: "text",
         placeholder: "Nom du produit",
         required: true,
-        pattern: "^[a-zA-Z0-9 ]+$",
-        title: "Entrez un nom valide (lettres et chiffres uniquement)",
         name:"name"
     },
     imgUrl: {

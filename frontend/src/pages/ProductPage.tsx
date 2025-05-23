@@ -1,6 +1,6 @@
 import PageGeneric from "../components/pageGeneric/PageGeneric";
 import "../components/products/ProductCard.css";
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   addButtonStyle,
@@ -23,8 +23,6 @@ const renderRatingStars = (rating: number) => {
     </>
   );
 };
-
-const PLACEHOLDER_URL = "https://placeholder.pics/svg/300";
 
 const ProductPage = () => {
   const navigate = useNavigate();
@@ -51,7 +49,7 @@ const ProductPage = () => {
       />
       <p>{product?.description}</p>
       <span style={{ color: "#f5c518", fontSize: "18px" }}>
-        {renderRatingStars(product?.rating || 0)} {product?.rating?.toFixed(1)}
+        {renderRatingStars(product?.rating || 0)}
       </span>
       <p>Prix(€):{product?.price}</p>
       <button

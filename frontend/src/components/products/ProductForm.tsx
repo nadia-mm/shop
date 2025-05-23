@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useState } from "react";
 import { TProduct } from "./ProductList";
 import "./ProductForm.css";
 import Modal from "../modal/Modal";

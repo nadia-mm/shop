@@ -109,7 +109,7 @@ npm test
 ```
 
 
-For e2e testing, you can run cypress:
+For e2e testing, you can run cypress after running the app:
 
 ```bash
 npx cypress open

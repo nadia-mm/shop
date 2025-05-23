@@ -25,9 +25,9 @@ export const useProductById = (id: string) => {
 };
 
 export const useMutateProduct = (action: "edit" | "delete" | "add") => {
+  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (product: TProduct) => {
-      console.log(product)
       if (action === "edit") {
          await axios.put(`${PRODUCT_API_URL}/${product._id}`, product);
       } else if (action === "add") {
@@ -35,7 +35,7 @@ export const useMutateProduct = (action: "edit" | "delete" | "add") => {
       } else {
          await axios.delete(`${PRODUCT_API_URL}/${product._id}`);
       }
-
+      queryClient.invalidateQueries({ queryKey: ['products'] })
     }
   });
 };

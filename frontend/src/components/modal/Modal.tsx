@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import "./Modal.css";
-import Snackbar from "../snackbar/Snackbar";
 
 interface IModal {
   isOpen: boolean;
